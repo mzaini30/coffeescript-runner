@@ -1,0 +1,17 @@
+extends base.pug 
+
+block isi 
+  .app(v-scope)
+    .m-3 
+      .btn.btn-primary(@click='tambah') New
+  script
+    :coffee
+      PetiteVue.createApp({
+        tambah: ->
+          {value} = await Swal.fire({
+            inputLabel: 'Add new app'
+            input: 'text'
+          })
+          if value
+            Swal.fire('Thanks')
+      }).mount()
