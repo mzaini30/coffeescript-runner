@@ -6,13 +6,13 @@ block isi
       .btn.btn-primary(@click='tambah') New
       p {{list}}
   script
-    :coffee(bare="false")
+    :coffee
       PetiteVue.createApp({
         list: []
-        init: =>
+        init: ->
           if localStorage.data_coffee
             @list = JSON.parse localStorage.data_coffee
-        tambah: =>
+        tambah: ->
           {value} = await Swal.fire
             inputLabel: 'Add new app'
             input: 'text'
@@ -25,7 +25,11 @@ block isi
             
             if data
               data = JSON.parse data
-              data.push data_baru
+              data = [
+                data_baru
+                data...
+              ]
+              
               @list = data
               localStorage.data_coffee = JSON.stringify data
             else
