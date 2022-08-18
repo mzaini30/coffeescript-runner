@@ -15,7 +15,9 @@ html(lang="en")
     script
       :coffee(bare="false")
         alert = (x) ->
-          Swal.fire x
+          Swal.fire({
+            html: x
+          })
   
   body 
     block isi 
