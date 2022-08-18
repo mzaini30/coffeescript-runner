@@ -1,6 +1,10 @@
 extends base.pug
 
 block isi
+  style
+    :stylus
+      textarea
+        white-space pre
   .p-2(v-scope @vue:mounted="init")
     textarea.mb-3.form-control(v-model="isi")
     .btn.btn-success.mr-2(@click="jalankan") Run
@@ -20,7 +24,14 @@ block isi
       PetiteVue.createApp({
         isi: ""
         jalankan: ->
-          eval CoffeeScript.compile @isi
+          try
+            eval CoffeeScript.compile @isi
+          catch x
+            Swal.fire({
+              icon: "error"
+              title: "Error"
+              text: JSON.stringify x
+            })
         hapus: ->
           {value} = await Swal.fire "Delete"
           if value
