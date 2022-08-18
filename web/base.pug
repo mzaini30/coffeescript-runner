@@ -6,8 +6,16 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Document
     link(rel="stylesheet", href="vendor/bootstrap.min.css")
+    style
+      :stylus
+        *
+          word-wrap break-word
     script(src='vendor/petite-vue.iife.js')
     script(src='vendor/sweetalert2@11.js')
-   
+    script
+      :coffee(bare="false")
+        alert = (x) ->
+          Swal.fire x
+  
   body 
     block isi 

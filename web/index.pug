@@ -1,10 +1,17 @@
 extends base.pug 
 
-block isi 
+block isi
+  style
+    :stylus
+      .tombol
+        display inline-block
+        margin 0 3px 3px 0
   div(v-scope @vue:mounted="init")
     .m-3 
       .btn.btn-primary(@click='tambah') New
-      p {{list}}
+
+      .my-3
+        a.tombol.btn.btn-success(v-for="x in list" :href="`editor.html?${x.id}`") {{x.judul}}
   script
     :coffee
       PetiteVue.createApp({
