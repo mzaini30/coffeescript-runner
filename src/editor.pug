@@ -5,11 +5,14 @@ block isi
     :stylus
       textarea
         white-space pre
+      .jalankan
+        margin-right 5px
+
   .p-2(v-scope @vue:mounted="init")
     textarea.mb-3.form-control(v-model="isi")
-    .btn.btn-success.mr-2(@click="jalankan") Run
+    .btn.btn-success.jalankan(@click="jalankan") Run
     .btn.btn-danger(@click="hapus") Delete
-  script(src="vendor/coffeescript.js")
+  script(src="coffeescript.js")
   script
     :coffee
       id = location.href.split("?")[1]
